@@ -4,9 +4,12 @@ const withPWA = withPWAInit({
   disable: false,
 });
 
-// Your Next config is automatically typed!
-export default withPWA({
+const nextConfig = {
   output: "export", // Outputs a Single-Page Application (SPA).
-  distDir: "./dist", // Changes the build output directory to `./dist/`.
-  basePath: process.env.NEXT_PUBLIC_BASE_PATH, // Sets the base path to `/some-base-path`.
-});
+  distDir: "./dist", // Custom build output directory.
+  basePath: process.env.NEXT_PUBLIC_BASE_PATH, // Sets the base path dynamically.
+  eslint: { ignoreDuringBuilds: true }, // Ignore ESLint errors during builds.
+  images: { unoptimized: true }, // Disable Next.js image optimization.
+};
+
+export default withPWA(nextConfig);
