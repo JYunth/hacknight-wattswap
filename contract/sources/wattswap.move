@@ -34,6 +34,11 @@ module wattswap_addr::wattswap {
         swap_count: u64,
     }
 
+    // Struct to hold active listings
+    struct ActiveListings has key {
+        listings: vector<WattSwap>,
+    }
+
     // Event structs
     struct WattSwapEvents has key {
         swap_created_events: EventHandle<SwapCreatedEvent>,
@@ -91,6 +96,10 @@ module wattswap_addr::wattswap {
             purchase_events: account::new_event_handle<PurchaseEvent>(account),
             confirm_events: account::new_event_handle<ConfirmEvent>(account),
         });
+
+        move_to(account, ActiveListings {
+            listings: vector::empty<WattSwap>(),
+        });
     }
 
     // Create a new WattSwap (by a seller)
@@ -98,7 +107,7 @@ module wattswap_addr::wattswap {
         account: &signer,
         watt_amount: u64,
         apt_price: u64,
-    ) acquires WattSwaps, WattSwapEvents {
+    ) acquires WattSwaps, WattSwapEvents, ActiveListings {
         let addr = signer::address_of(account);
         let swaps_ref = borrow_global_mut<WattSwaps>(addr);
 
@@ -115,6 +124,9 @@ module wattswap_addr::wattswap {
         };
 
         vector::push_back(&mut swaps_ref.swaps, new_swap);
+
+       let active_listings_ref = borrow_global_mut<ActiveListings>(addr);
+       vector::push_back(&mut active_listings_ref.listings, new_swap);
 
         let events_ref = borrow_global_mut<WattSwapEvents>(addr);
         event::emit_event(
@@ -133,7 +145,7 @@ module wattswap_addr::wattswap {
         account: &signer,
         seller: address,
         swap_id: u64,
-    ) acquires WattSwaps, WattSwapEvents {
+    ) acquires WattSwaps, WattSwapEvents, ActiveListings {
         let buyer_addr = signer::address_of(account);
         let swaps_ref = borrow_global_mut<WattSwaps>(seller);
 
@@ -151,6 +163,13 @@ module wattswap_addr::wattswap {
         // Update swap details
         swap_ref.buyer = buyer_addr;
         swap_ref.is_active = false; // Deactivate after purchase
+
+        // Remove from active listings
+        let seller_active_listings_ref = borrow_global_mut<ActiveListings>(seller);
+        let (found, index) = find_swap_by_id(&seller_active_listings_ref.listings, swap_id);
+        if (found) {
+            vector::remove(&mut seller_active_listings_ref.listings, index);
+        };
 
         let events_ref = borrow_global_mut<WattSwapEvents>(seller);
         event::emit_event(
@@ -235,5 +254,23 @@ module wattswap_addr::wattswap {
             swap.apt_price,
             swap.is_active
         )
+    }
+
+   // View function to get all active listings for a specific seller
+    #[view]
+    public fun get_all_active_listings(seller: address): vector<WattSwap> acquires ActiveListings {
+        let active_listings_ref = borrow_global<ActiveListings>(seller);
+        let filtered_listings = vector::empty<WattSwap>();
+        let i = 0;
+        let len = vector::length(&active_listings_ref.listings);
+
+        while (i < len) {
+            let swap = vector::borrow(&active_listings_ref.listings, i);
+            if (swap.is_active && swap.seller == seller) {
+                vector::push_back(&mut filtered_listings, *swap);
+            };
+            i = i + 1;
+        };
+        filtered_listings
     }
 }
