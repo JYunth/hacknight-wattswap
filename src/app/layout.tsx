@@ -1,35 +1,39 @@
-import type { Metadata } from "next";
-import type { ReactNode } from "react";
+import './globals.css';
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import { Header } from '@/components/header';
+import { BottomNav } from '@/components/bottom-nav';
+import { ThemeProvider } from '@/components/theme-provider';
 
-import { ReactQueryProvider } from "@/components/ReactQueryProvider";
-import { WalletProvider } from "@/components/WalletProvider";
-import { Toaster } from "@/components/ui/toaster";
-import { WrongNetworkAlert } from "@/components/WrongNetworkAlert";
-
-import "./globals.css";
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  applicationName: "Aptos Boilerplate Template",
-  title: "NextJS Boilerplate Template",
-  description: "Aptos Boilerplate Template",
-  manifest: "/manifest.json",
+  title: 'WattSwap - Energy Trading Platform',
+  description: 'Trade energy efficiently with WattSwap',
 };
 
 export default function RootLayout({
   children,
 }: {
-  children: ReactNode;
+  children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <WalletProvider>
-          <ReactQueryProvider>
-            <div id="root">{children}</div>
-            <WrongNetworkAlert />
-            <Toaster />
-          </ReactQueryProvider>
-        </WalletProvider>
+    <html lang="en" suppressHydrationWarning>
+      <body className={inter.className}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <div className="relative min-h-screen flex flex-col">
+            <Header />
+            <main className="flex-1 pb-20">
+              {children}
+            </main>
+            <BottomNav />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );
