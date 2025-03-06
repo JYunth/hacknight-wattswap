@@ -1,5 +1,4 @@
 "use client";
-
 import { TypewriterEffect } from "@/components/ui/typewriter-effect";
 import SlidingNumber from "@/components/motion-primitives/sliding-number";
 import { motion } from "framer-motion";
@@ -7,7 +6,7 @@ import { useEffect, useState } from "react";
 import SpotlightCard from '@/components/ui/SpotlightCard';
 import { useRouter } from "next/navigation";
 import AnimatedGridBackground from "@/components/ui/GridBackground";
-import Aurora  from "@/components/ui/Aurora";
+import Aurora from "@/components/ui/Aurora";
 
 export default function Home() {
   const router = useRouter();
@@ -18,8 +17,8 @@ export default function Home() {
   const [totalCapacity, setTotalCapacity] = useState(0);
 
   useEffect(() => {
-    const duration = 2000; // 4 seconds total duration
-    const steps = duration / 50; // 50ms per step
+    const duration = 2000;
+    const steps = duration / 50;
     const walletIncrement = 20.2 / steps;
     const energyIncrement = 27 / steps;
     const capacityIncrement = 50 / steps;
@@ -38,11 +37,17 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="relative w-full min-h-screen">
-      <Aurora/>
-      <AnimatedGridBackground />
+    <div className="relative w-full min-h-screen overflow-hidden">
+      {/* Background Effects */}
+      <div className="absolute inset-0 z-0">
+        <Aurora />
+        <AnimatedGridBackground />
+      </div>
+
+      
+
+      {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 py-12 flex flex-col items-center gap-8">
-        {/* Header Section */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-white">
             Welcome to <span className="text-[#FFB400]">Jhyenth</span>
@@ -57,8 +62,7 @@ export default function Home() {
 
         {/* Wallet & Energy Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center w-full max-w-4xl">
-          {[
-            { value: walletBalance, label: "Wallet Balance", unit: "APT" },
+          {[{ value: walletBalance, label: "Wallet Balance", unit: "APT" },
             { value: energyInBank, label: "Energy in Bank", unit: "kWh" },
             { value: totalCapacity, label: "Total Capacity", unit: "kWh" },
           ].map((item, index) => (
@@ -79,15 +83,14 @@ export default function Home() {
 
         {/* Spotlight Cards Section */}
         <div className="flex flex-wrap justify-center gap-8">
-          {[
-            { title: "Sell Energy", path: "/marketplace" },
+          {[{ title: "Sell Energy", path: "/marketplace" },
             { title: "Buy Energy", path: "/my-listings" },
             { title: "Activities", path: "/activity" },
           ].map((card, index) => (
             <SpotlightCard
               key={index}
               className="w-64 h-64 md:w-72 md:h-72 flex flex-col items-center justify-center gap-4 rounded-xl shadow-lg"
-              spotlightColor="rgba(255, 180, 0, 0.25)" // Updated to match your FFB400 theme
+              spotlightColor="rgba(255, 180, 0, 0.25)"
             >
               <h2 className="text-white text-xl font-bold">{card.title}</h2>
               <button

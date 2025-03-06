@@ -72,7 +72,7 @@ const AnimatedGridBackground = () => {
 
       // Draw grid lines
       ctx.strokeStyle = gridColor;
-      ctx.lineWidth = 2;
+      ctx.lineWidth = 1;
 
       // Vertical lines
       for (let i = 0; i <= cols; i++) {
