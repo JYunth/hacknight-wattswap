@@ -38,7 +38,6 @@ export default function Home() {
   const handleNavigate = (path: string) => router.push(path);
 
   return (
-<<<<<<< HEAD
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-bold mb-6">Welcome to<span className="font-gothic font-[#FFB400] text-transparent bg-clip-text bg-gradient-to-r from-[#FFB400] to-[#F0C419]"> WattSwap</span></h1>
@@ -82,7 +81,6 @@ export default function Home() {
               </a>
             </div>
           </div>
-=======
     <div className="container mx-auto px-6 py-12 flex flex-col items-center">
       {/* Header Section */}
       <div className="text-center mb-12">
@@ -94,7 +92,6 @@ export default function Home() {
           <span className="inline-block ml-2">
             <TypewriterEffect words={words} />
           </span>
->>>>>>> frontend
         </div>
       </div>
 
@@ -120,20 +117,20 @@ export default function Home() {
         ))}
       </div>
       <div className="flex flex-wrap justify-center gap-8">
-  {["Card 1", "Card 2", "Card 3"].map((title, index) => (
-    <SpotlightCard 
-      key={index} 
-      className="[#1E1E24] w-64 h-64 md:w-72 md:h-72 flex flex-col items-center justify-center gap-4 rounded-xl shadow-lg"
-      spotlightColor="rgba(255, 191, 0, 0.25)" // Amber Yellow Effect
-      // spotlightColor="rgba(255, 255, 255, 0.25)" // White Effect
-    >
-      <h2 className="text-white text-xl font-bold">{title}</h2>
-      <button className="px-4 py-2 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400 transition">
-        Click Me
-      </button>
-    </SpotlightCard>
-  ))}
-</div>
+        {["Card 1", "Card 2", "Card 3"].map((title, index) => (
+          <SpotlightCard
+            key={index}
+            className="[#1E1E24] w-64 h-64 md:w-72 md:h-72 flex flex-col items-center justify-center gap-4 rounded-xl shadow-lg"
+            spotlightColor="rgba(255, 191, 0, 0.25)" // Amber Yellow Effect
+          // spotlightColor="rgba(255, 255, 255, 0.25)" // White Effect
+          >
+            <h2 className="text-white text-xl font-bold">{title}</h2>
+            <button className="px-4 py-2 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400 transition">
+              Click Me
+            </button>
+          </SpotlightCard>
+        ))}
+      </div>
     </div>
   );
 }
