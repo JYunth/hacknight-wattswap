@@ -3,7 +3,7 @@ import type { Metadata } from 'next';
 import { Header } from '@/components/header';
 import { BottomNav } from '@/components/bottom-nav';
 import { ThemeProvider } from '@/components/theme-provider';
-
+//import AnimatedGridBackground from '@/components/ui/GridBackground';
 
 export const metadata: Metadata = {
   title: 'WattSwap - Energy Trading Platform',
@@ -17,14 +17,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className='antialiased' 
-      style={{ fontFamily: "LunchtypeRegular" }}>  
+      <body className="antialiased relative" style={{ fontFamily: "LunchtypeRegular" }}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange
         >
+          
           <div className="relative min-h-screen flex flex-col">
             <Header />
             <main className="flex-1 pb-20">
