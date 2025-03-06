@@ -3,8 +3,8 @@
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { Zap } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/theme-toggle";
+import ShinyText from '@/components/ui/ShinyText';
 
 export function Header() {
   const pathname = usePathname();
@@ -36,9 +36,7 @@ export function Header() {
         
         <div className="flex items-center justify-end space-x-4">
           <ThemeToggle />
-          <Button variant="outline" size="sm">
-            Connect Wallet
-          </Button>
+          <ShinyText text="Connect Wallet" disabled={false} speed={2} className='custom-class ' />
         </div>
       </div>
     </header>

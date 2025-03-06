@@ -21,7 +21,7 @@
     "incremental": true,
     "baseUrl": ".",
     "paths": {
-      "@/*": ["old-src/*"]
+      "@/*": ["src/*"]
     },
     "plugins": [
       {
@@ -34,7 +34,6 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",
-    "skibidi",
     "./dist/types/**/*.ts"
   ],
   "exclude": ["node_modules", "./node_modules"]

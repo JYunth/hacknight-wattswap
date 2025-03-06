@@ -2,7 +2,7 @@ export default function Home() {
   return (
     <div className="container mx-auto px-4 py-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">Welcome to WattSwap</h1>
+        <h1 className="text-3xl font-bold mb-6">Welcome to<span className="font-gothic font-[#FFB400] text-transparent bg-clip-text bg-gradient-to-r from-[#FFB400] to-[#F0C419]"> WattSwap</span></h1>
         <p className="text-lg mb-8">
           The decentralized marketplace for energy trading
         </p>
