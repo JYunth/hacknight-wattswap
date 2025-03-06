@@ -1,4 +1,4 @@
-module wattswap_addr::wattswap {
+module wattswap_addr::wattswap_hacknight {
     use std::signer;
     use aptos_framework::coin;
     use aptos_framework::aptos_coin::AptosCoin;
@@ -240,23 +240,15 @@ module wattswap_addr::wattswap {
     public fun get_swap_details(
         seller: address,
         swap_id: u64
-    ): (u64, address, address, u64, u64, bool) acquires WattSwaps {
+    ): WattSwap acquires WattSwaps {
         let swaps_ref = borrow_global<WattSwaps>(seller);
         let (found, swap_index) = find_swap_by_id(&swaps_ref.swaps, swap_id);
         assert!(found, E_SWAP_NOT_FOUND);
 
-        let swap = vector::borrow(&swaps_ref.swaps, swap_index);
-        (
-            swap.id,
-            swap.seller,
-            swap.buyer,
-            swap.watt_amount,
-            swap.apt_price,
-            swap.is_active
-        )
+        *vector::borrow(&swaps_ref.swaps, swap_index)
     }
 
-   // View function to get all active listings for a specific seller
+    // View function to get all active listings for a specific seller
     #[view]
     public fun get_all_active_listings(seller: address): vector<WattSwap> acquires ActiveListings {
         let active_listings_ref = borrow_global<ActiveListings>(seller);
