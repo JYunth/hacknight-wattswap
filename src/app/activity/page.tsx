@@ -1,11 +1,10 @@
 'use client'
 
 import React, { useState } from 'react';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import ActivityItem from '@/components/ActivityItem';
 import { Button } from '@/components/ui/button';
-import { Calendar, Filter, RefreshCw } from 'lucide-react';
-import { formatDistanceToNow } from 'date-fns';
+import { Calendar, RefreshCw } from 'lucide-react';
 
 type ActivityFilter = 'all' | 'buy' | 'sell' | 'dispute';
 type TimeFilter = 'day' | 'week' | 'month' | 'year';
@@ -14,7 +13,7 @@ const Activity = () => {
   const [filter, setFilter] = useState<ActivityFilter>('all');
   const [timeFilter, setTimeFilter] = useState<TimeFilter>('month');
   const [isLoading, setIsLoading] = useState(false);
-  
+
   // This would be replaced with actual data from the blockchain using the functions
   // from the WattSwap spec sheet like get_swaps_by_buyer and get_swaps_by_seller
   const mockActivities = [
@@ -22,7 +21,7 @@ const Activity = () => {
       id: 1,
       date: "2023-11-25",
       time: "14:32:05",
-      swapId: "0x7F1ba4eE97123123123123123123123123123125",
+      swapId: "0x7F1ba4eE97123123123123123123123123125",
       transactionHash: "0x7F1ba4eE97123123123123123123123123123123",
       amount: 10,
       price: 15,
@@ -63,12 +62,12 @@ const Activity = () => {
       status: 'disputed' as const
     },
   ];
-  
+
   const filteredActivities = mockActivities.filter(activity => {
     if (filter === 'all') return true;
     return activity.type === filter;
   });
-  
+
   const refreshActivities = () => {
     setIsLoading(true);
     // Simulate API call to get_swaps_by_buyer and get_swaps_by_seller
@@ -76,18 +75,18 @@ const Activity = () => {
       setIsLoading(false);
     }, 1000);
   };
-  
+
   return (
     <div className="space-y-6">
-      <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center space-x-4">
         <div>
           <h1 className="text-2xl font-semibold">Energy Activity</h1>
           <p className="text-sm text-muted-foreground">Track your energy swaps and transactions</p>
         </div>
-        
-        <Button 
+
+        <Button
           onClick={refreshActivities}
-          variant="outline" 
+          variant="outline"
           size="sm"
           disabled={isLoading}
           className="gap-1"
@@ -96,20 +95,19 @@ const Activity = () => {
           <span>Refresh</span>
         </Button>
       </div>
-      
-      <div className="flex justify-between items-center space-x-4">
-        <Tabs defaultValue="all" className="flex-1">
-          <TabsList className="grid grid-cols-4 w-full glass-card">
+
+      <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+        <Tabs defaultValue="all" className="w-full">
+          <TabsList className="grid w-full grid-cols-4 glass-card overflow-x-auto">
             <TabsTrigger value="all" onClick={() => setFilter('all')}>All</TabsTrigger>
             <TabsTrigger value="buy" onClick={() => setFilter('buy')}>Bought</TabsTrigger>
             <TabsTrigger value="sell" onClick={() => setFilter('sell')}>Sold</TabsTrigger>
             <TabsTrigger value="dispute" onClick={() => setFilter('dispute')}>Disputed</TabsTrigger>
           </TabsList>
         </Tabs>
-        
-        <div className="flex items-center bg-secondary/30 rounded-full px-3 py-1 gap-1 text-xs">
-          <Calendar size={14} />
-          <select 
+
+        <div className="flex items-center bg-secondary/30 rounded-full px-3 py-1 gap-1 text-xs w-full md:w-auto">          <Calendar size={14} />
+          <select
             className="bg-transparent focus:outline-none"
             value={timeFilter}
             onChange={(e) => setTimeFilter(e.target.value as TimeFilter)}
@@ -121,7 +119,7 @@ const Activity = () => {
           </select>
         </div>
       </div>
-      
+
       {filteredActivities.length > 0 ? (
         <div className="space-y-4">
           {filteredActivities.map((activity) => (
@@ -141,9 +139,9 @@ const Activity = () => {
       ) : (
         <div className="glass-card rounded-xl p-8 text-center">
           <p className="text-muted-foreground mb-2">No activity found for the selected filter</p>
-          <Button 
-            variant="outline" 
-            size="sm" 
+          <Button
+            variant="outline"
+            size="sm"
             onClick={() => setFilter('all')}
           >
             Clear Filters

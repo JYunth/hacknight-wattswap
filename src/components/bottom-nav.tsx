@@ -1,7 +1,7 @@
 "use client";
 
 import { FloatingDock } from "@/components/ui/floating-dock";
-import { Home, ShoppingBag, BarChart2, Activity, User, ListChecks } from "lucide-react";
+import { Home, ShoppingBag, BarChart2, Activity, ListChecks } from "lucide-react";
 
 export function BottomNav() {
   const navItems = [
@@ -29,11 +29,6 @@ export function BottomNav() {
       title: "Analytics",
       icon: <BarChart2 className="h-full w-full text-[#FFD700]" />,
       href: "/analytics",
-    },
-    {
-      title: "Profile",
-      icon: <User className="h-full w-full text-[#FFD700]" />,
-      href: "/profile",
     },
   ];
 

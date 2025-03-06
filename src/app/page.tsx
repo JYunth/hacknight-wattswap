@@ -45,18 +45,21 @@ export default function Home() {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 container mx-auto px-6 py-12 flex flex-col items-center gap-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-white">
-            Welcome to <span className="text-[#FFB400]">Jhyenth</span>
-          </h1>
-          <div className="text-xl font-medium mt-2 flex justify-center">
-            <span>Connected to </span>
-            <span className="inline-block ml-2">
-              <TypewriterEffect words={words} />
-            </span>
-          </div>
+      <div className="relative z-10 container mx-auto px-6 py-12 flex flex-col items-center justify-center gap-8">
+      <div className="glass-card rounded-2xl p-6 animate-slide-up z-10 justify-center">
+      <h1 className="text-2xl font-semibold mb-0.5">Welcome, Pranav</h1>
+      <div className="flex items-center space-x-2 mb-4">
+        <div className="h-2 w-2 rounded-full bg-energy animate-pulse" />
+        <p className="text-xs font-mono text-muted-foreground">
+          Connected to <span className="text-foreground">IntelliGrid-US-East</span>
+        </p>
+      </div>
+      <div className="flex items-center">
+        <div className="text-xs font-mono py-1 px-2 border border-white/10 rounded-md bg-secondary/50 text-muted-foreground truncate">
+          Wallet address: 0x735723268asdyguy
         </div>
+      </div>
+    </div>
 
         {/* Wallet & Energy Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 text-center w-full max-w-4xl">
@@ -95,13 +98,12 @@ export default function Home() {
                 className="px-4 py-2 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400 transition"
                 onClick={() => router.push(card.path)}
               >
-                Click Me
+                Explore
               </button>
             </SpotlightCard>
           ))}
         </div>
       </div>
-      
     </div>
   );
 }
