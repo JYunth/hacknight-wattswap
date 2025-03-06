@@ -37,72 +37,12 @@ export default function Home() {
   }, []);
 
   return (
-<<<<<<< HEAD
-    <div className="container mx-auto px-4 py-8">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-bold mb-6">Welcome to<span className="font-gothic font-[#FFB400] text-transparent bg-clip-text bg-gradient-to-r from-[#FFB400] to-[#F0C419]"> WattSwap</span></h1>
-        <p className="text-lg mb-8">
-          The decentralized marketplace for energy trading
-        </p>
-        
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div className="bg-card p-6 rounded-lg shadow-sm border">
-            <h2 className="text-xl font-semibold mb-4">Energy Stats</h2>
-            <div className="space-y-4">
-              <div className="flex justify-between items-center">
-                <span>Available Energy</span>
-                <span className="font-medium">20.2 kWh</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span>Energy Capacity</span>
-                <span className="font-medium">50 kWh</span>
-              </div>
-              <div className="flex justify-between items-center">
-                <span>Current Rate</span>
-                <span className="font-medium">0.12 ETH/kWh</span>
-              </div>
-            </div>
-          </div>
-          
-          <div className="bg-card p-6 rounded-lg shadow-sm border">
-            <h2 className="text-xl font-semibold mb-4">Quick Actions</h2>
-            <div className="grid grid-cols-2 gap-4">
-              <button className="bg-primary text-primary-foreground p-3 rounded-md hover:opacity-90 transition-opacity">
-                Buy Energy
-              </button>
-              <button className="bg-secondary text-secondary-foreground p-3 rounded-md hover:opacity-90 transition-opacity">
-                Sell Energy
-              </button>
-              <a href="/my-listings" className="bg-muted text-muted-foreground p-3 rounded-md hover:opacity-90 transition-opacity text-center">
-                My Listings
-              </a>
-              <a href="/analytics" className="bg-muted text-muted-foreground p-3 rounded-md hover:opacity-90 transition-opacity text-center">
-                Analytics
-              </a>
-            </div>
-          </div>
-    <div className="container mx-auto px-6 py-12 flex flex-col items-center">
-      {/* Header Section */}
-      <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold text-white">
-          Welcome to <span className="text-[#FFB400]">Jhyenth</span>
-        </h1>
-        <div className="text-xl font-medium mt-2 flex justify-center">
-          <span>Connected to </span>
-          <span className="inline-block ml-2">
-            <TypewriterEffect words={words} />
-          </span>
-        </div>
-=======
     <div className="relative w-full min-h-screen overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0 z-0">
         <Aurora />
         <AnimatedGridBackground />
->>>>>>> a52b0d74a62fe380039a5b63d45eee444867c636
       </div>
-
-      
 
       {/* Main Content */}
       <div className="relative z-10 container mx-auto px-6 py-12 flex flex-col items-center gap-8">
@@ -161,24 +101,7 @@ export default function Home() {
           ))}
         </div>
       </div>
-<<<<<<< HEAD
-      <div className="flex flex-wrap justify-center gap-8">
-        {["Card 1", "Card 2", "Card 3"].map((title, index) => (
-          <SpotlightCard
-            key={index}
-            className="[#1E1E24] w-64 h-64 md:w-72 md:h-72 flex flex-col items-center justify-center gap-4 rounded-xl shadow-lg"
-            spotlightColor="rgba(255, 191, 0, 0.25)" // Amber Yellow Effect
-          // spotlightColor="rgba(255, 255, 255, 0.25)" // White Effect
-          >
-            <h2 className="text-white text-xl font-bold">{title}</h2>
-            <button className="px-4 py-2 bg-amber-500 text-black font-semibold rounded-lg hover:bg-amber-400 transition">
-              Click Me
-            </button>
-          </SpotlightCard>
-        ))}
-      </div>
-=======
->>>>>>> a52b0d74a62fe380039a5b63d45eee444867c636
+      
     </div>
   );
 }
