@@ -1,10 +1,11 @@
 # WattSwap
 Your one stop solution for decentralized energy trading needs, with your safety in mind.
+Built exclusively on Aptos for its sub-second latency and finality capabilities.
 
 We recommend interacting with this smart contract using the frontend here: [Link to frontend repo](https://github.com/allwin23/powerlink-haus)
 
 
-## What tools the template uses?
+## What tools the dapp uses?
 
 - React framework
 - shadcn/ui + tailwind for styling
